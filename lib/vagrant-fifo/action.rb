@@ -3,7 +3,7 @@ require "pathname"
 require "vagrant/action/builder"
 
 module VagrantPlugins
-  module Joyent
+  module Fifo
     module Action
       # Include the built-in modules so we can use them as top-level things.
       include Vagrant::Action::Builtin
@@ -14,7 +14,7 @@ module VagrantPlugins
           b.use Call, DestroyConfirm do |env, b2|
             if env[:result]
               b2.use ConfigValidate
-              b2.use ConnectJoyent
+              b2.use ConnectFifo
               b2.use TerminateInstance
             else
               b2.use MessageWillNotDestroy
@@ -45,7 +45,7 @@ module VagrantPlugins
       def self.action_read_ssh_info
         Vagrant::Action::Builder.new.tap do |b|
           b.use ConfigValidate
-          b.use ConnectJoyent
+          b.use ConnectFifo
           b.use ReadSSHInfo
         end
       end
@@ -56,7 +56,7 @@ module VagrantPlugins
       def self.action_read_state
         Vagrant::Action::Builder.new.tap do |b|
           b.use ConfigValidate
-          b.use ConnectJoyent
+          b.use ConnectFifo
           b.use ReadState
         end
       end
@@ -80,7 +80,7 @@ module VagrantPlugins
       def self.action_up
         Vagrant::Action::Builder.new.tap do |b|
           b.use ConfigValidate
-          b.use ConnectJoyent
+          b.use ConnectFifo
           b.use Call, IsCreated do |env, b2|
             if env[:result]
               b2.use MessageAlreadyCreated
@@ -96,7 +96,7 @@ module VagrantPlugins
 
       # The autoload farm
       action_root = Pathname.new(File.expand_path("../action", __FILE__))
-      autoload :ConnectJoyent, action_root.join("connect_joyent")
+      autoload :ConnectFifo, action_root.join("connect_fifo")
       autoload :IsCreated, action_root.join("is_created")
       autoload :MessageAlreadyCreated, action_root.join("message_already_created")
       autoload :MessageNotCreated, action_root.join("message_not_created")

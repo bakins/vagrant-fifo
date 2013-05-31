@@ -2,18 +2,18 @@ require "log4r"
 require 'ipaddr'
 
 module VagrantPlugins
-  module Joyent
+  module Fifo
     module Action
       # This action reads the SSH info for the machine and puts it into the
       # `:machine_ssh_info` key in the environment.
       class ReadSSHInfo
         def initialize(app, env)
           @app    = app
-          @logger = Log4r::Logger.new("vagrant_joyent::action::read_ssh_info")
+          @logger = Log4r::Logger.new("vagrant_fifo::action::read_ssh_info")
         end
 
         def call(env)
-          env[:machine_ssh_info] = read_ssh_info(env[:joyent_compute], env[:machine])
+          env[:machine_ssh_info] = read_ssh_info(env[:fifo_compute], env[:machine])
 
           @app.call(env)
         end
@@ -35,11 +35,11 @@ module VagrantPlugins
           return (block_a.include?(ip) or block_b.include?(ip) or block_c.include?(ip))
         end
         
-        def read_ssh_info(joyent, machine)
+        def read_ssh_info(fifo, machine)
           return nil if machine.id.nil?
 
           # Find the machine
-          server = joyent.servers.get(machine.id)
+          server = fifo.servers.get(machine.id)
           if server.nil?
             # The machine can't be found
             @logger.info("Machine couldn't be found, assuming it got destroyed.")

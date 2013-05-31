@@ -1,22 +1,22 @@
-# vagrant-joyent Vagrant plugin
+# vagrant-fifo Vagrant plugin
 
-vagrant-joyent is a Vagrant provider for the Joyent Cloud and SmartDatacenter
+vagrant-fifo is a Vagrant provider for the Fifo Cloud and SmartDatacenter
 
 ## Installation
 
-    $ git clone https://github.com/someara/vagrant-joyent/
-    $ cd vagrant-joyent
-    $ gem build vagrant-joyent.gemspec ; 
-    $ vagrant plugin install vagrant-joyent-0.2.1.gem 
+    $ git clone https://github.com/someara/vagrant-fifo/
+    $ cd vagrant-fifo
+    $ gem build vagrant-fifo.gemspec ; 
+    $ vagrant plugin install vagrant-fifo-0.2.1.gem 
     $ vagrant box add dummy ./dummy.box
 
 ## Usage
 
-Check out a chef-repo with a Joyent compatible Vagrantfile, then run "vagrant up"
+Check out a chef-repo with a Fifo compatible Vagrantfile, then run "vagrant up"
 
-    $ git clone https://github.com/someara/vagrant-joyent-hello_world-repo 
-    $ cd vagrant-joyent-hello_world-repo
-    $ vagrant up --provider=joyent
+    $ git clone https://github.com/someara/vagrant-fifo-hello_world-repo 
+    $ cd vagrant-fifo-hello_world-repo
+    $ vagrant up --provider=fifo
     $ vagrant provision
     $ vagrant ssh
     $ vagrant destroy

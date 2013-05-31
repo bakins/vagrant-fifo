@@ -1,30 +1,30 @@
 begin
   require "vagrant"
 rescue LoadError
-  raise "The Vagrant Joyent plugin must be run within Vagrant."
+  raise "The Vagrant Fifo plugin must be run within Vagrant."
 end
 
 # This is a sanity check to make sure no one is attempting to install
 # this into an early Vagrant version.
 if Vagrant::VERSION < "1.1.0"
-  raise "The Vagrant Joyent plugin is only compatible with Vagrant 1.1+"
+  raise "The Vagrant Fifo plugin is only compatible with Vagrant 1.1+"
 end
 
 module VagrantPlugins
-  module Joyent
+  module Fifo
     class Plugin < Vagrant.plugin("2")
-      name "Joyent"
+      name "Fifo"
       description <<-DESC
       This plugin installs a provider that allows Vagrant to manage
-      machines in Joyent (Public Cloud/ SmartDatacenter).
+      machines in Fifo (Public Cloud/ SmartDatacenter).
       DESC
 
-      config(:joyent, :provider) do
+      config(:fifo, :provider) do
         require_relative "config"
         Config
       end
 
-      provider(:joyent) do
+      provider(:fifo) do
         # Setup logging and i18n
         setup_logging
         setup_i18n
@@ -36,7 +36,7 @@ module VagrantPlugins
 
       # This initializes the internationalization strings.
       def self.setup_i18n
-        I18n.load_path << File.expand_path("locales/en.yml", Joyent.source_root)
+        I18n.load_path << File.expand_path("locales/en.yml", Fifo.source_root)
         I18n.reload!
       end
 
@@ -62,7 +62,7 @@ module VagrantPlugins
         # Set the logging level on all "vagrant" namespaced
         # logs as long as we have a valid level.
         if level
-          logger = Log4r::Logger.new("vagrant_joyent")
+          logger = Log4r::Logger.new("vagrant_fifo")
           logger.outputters = Log4r::Outputter.stderr
           logger.level = level
           logger = nil

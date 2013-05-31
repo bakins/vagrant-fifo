@@ -1,9 +1,9 @@
 require "log4r"
 require 'vagrant/util/retryable'
-require 'vagrant-joyent/util/timer'
+require 'vagrant-fifo/util/timer'
 
 module VagrantPlugins
-  module Joyent
+  module Fifo
     module Action
 
       # This runs the configured instance.
@@ -12,7 +12,7 @@ module VagrantPlugins
 
         def initialize(app, env)
           @app    = app
-          @logger = Log4r::Logger.new("vagrant_joyent::action::run_instance")
+          @logger = Log4r::Logger.new("vagrant_fifo::action::run_instance")
         end
 
         def call(env)
@@ -23,10 +23,10 @@ module VagrantPlugins
           dataset = env[:machine].provider_config.dataset
           flavor = env[:machine].provider_config.flavor
           node_name = env[:machine].provider_config.node_name || env[:machine].name
-          keyname = env[:machine].provider_config.joyent_keyname
+          keyname = env[:machine].provider_config.fifo_keyname
 
           # Launch!
-          env[:ui].info(I18n.t("vagrant_joyent.launching_instance"))
+          env[:ui].info(I18n.t("vagrant_fifo.launching_instance"))
           env[:ui].info(" -- Flavor: #{flavor}")
           env[:ui].info(" -- Dataset: #{dataset}")
           env[:ui].info(" -- Node name: #{node_name}")
@@ -39,11 +39,11 @@ module VagrantPlugins
               :package          => flavor
             }
 
-            server = env[:joyent_compute].servers.create(options)
+            server = env[:fifo_compute].servers.create(options)
 
-          rescue Fog::Compute::Joyent::NotFound => e
+          rescue Fog::Compute::Fifo::NotFound => e
             raise Errors::FogError, :message => e.message
-          rescue Fog::Compute::Joyent::Error => e
+          rescue Fog::Compute::Fifo::Error => e
             raise Errors::FogError, :message => e.message
           end
 
@@ -52,7 +52,7 @@ module VagrantPlugins
 
           # Wait for the instance to be ready first
           env[:metrics]["instance_ready_time"] = Util::Timer.time do
-            env[:ui].info(I18n.t("vagrant_joyent.waiting_for_ready"))
+            env[:ui].info(I18n.t("vagrant_fifo.waiting_for_ready"))
             retryable(:on => Fog::Errors::TimeoutError, :tries => 30) do
               # If we're interrupted don't worry about
               # waiting
@@ -68,7 +68,7 @@ module VagrantPlugins
           if !env[:interrupted]
             env[:metrics]["instance_ssh_time"] = Util::Timer.time do
               # Wait for SSH to be ready.
-              env[:ui].info(I18n.t("vagrant_joyent.waiting_for_ssh"))
+              env[:ui].info(I18n.t("vagrant_fifo.waiting_for_ssh"))
               while true
                 # If we're interrupted then just back
                 # out
@@ -81,7 +81,7 @@ module VagrantPlugins
             @logger.info("Time for SSH ready: #{env[:metrics]["instance_ssh_time"]}")
 
             # Ready and booted!
-            env[:ui].info(I18n.t("vagrant_joyent.ready"))
+            env[:ui].info(I18n.t("vagrant_fifo.ready"))
           end
 
           # Terminate the instance if we were interrupted

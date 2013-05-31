@@ -1,5 +1,5 @@
 module VagrantPlugins
-  module Joyent
+  module Fifo
     VERSION = "0.2.1"
   end
 end

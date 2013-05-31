@@ -1,5 +1,5 @@
 en:
-  vagrant_joyent:
+  vagrant_fifo:
     already_created: |-
       The machine is already created.
     launching_instance: |-
@@ -21,16 +21,16 @@ en:
       was declined.
 
     config:
-      joyent_username_required: |-
-        A Joyent Username must be specified via "joyent_username"
-      joyent_keyname_required: |-
-        A Joyent Keyname must be specified via "joyent_keyname"
-      joyent_keyfile_required: |-
-        A Joyent Keyfile must be specified via "joyent_keyfile"
-      joyent_api_url_required: |-
-        A Joyent Datacenter API endpoint must be specified via "joyent_api_url"
+      fifo_username_required: |-
+        A Fifo Username must be specified via "fifo_username"
+      fifo_keyname_required: |-
+        A Fifo Keyname must be specified via "fifo_keyname"
+      fifo_keyfile_required: |-
+        A Fifo Keyfile must be specified via "fifo_keyfile"
+      fifo_api_url_required: |-
+        A Fifo Datacenter API endpoint must be specified via "fifo_api_url"
       dataset_required: |-
-        A Joyent Dataset must be specified via "dataset"
+        A Fifo Dataset must be specified via "dataset"
       node_name_required: |-
         A Node Name must be specified via "node_name"
       ssh_username_required: |-
@@ -40,7 +40,7 @@ en:
 
     errors:
       fog_error: |-
-        There was an error talking to Joyent. The error message is shown
+        There was an error talking to Fifo. The error message is shown
         below:
 
         %{message}
@@ -56,10 +56,10 @@ en:
       short_not_created: |-
         not created
       long_not_created: |-
-        The Joyent instance is not created. Run `vagrant up` to create it.
+        The Fifo instance is not created. Run `vagrant up` to create it.
 
       short_running: |-
         running
       long_running: |-
-        The Joyent instance is running. To stop this machine, you can run
+        The Fifo instance is running. To stop this machine, you can run
         `vagrant halt`. To destroy the machine, you can run `vagrant destroy`.

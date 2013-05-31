@@ -3,14 +3,14 @@ require "log4r"
 require "vagrant/util/subprocess"
 
 module VagrantPlugins
-  module Joyent
+  module Fifo
     module Action
       # This middleware uses `rsync` to sync the folders over to the
-      # Joyent instance.
+      # Fifo instance.
       class SyncFolders
         def initialize(app, env)
           @app    = app
-          @logger = Log4r::Logger.new("vagrant_joyent::action::sync_folders")
+          @logger = Log4r::Logger.new("vagrant_fifo::action::sync_folders")
         end
 
         def call(env)
@@ -26,7 +26,7 @@ module VagrantPlugins
             # avoid creating an additional directory with rsync
             hostpath = "#{hostpath}/" if hostpath !~ /\/$/
 
-            env[:ui].info(I18n.t("vagrant_joyent.rsync_folder",
+            env[:ui].info(I18n.t("vagrant_fifo.rsync_folder",
                                 :hostpath => hostpath,
                                 :guestpath => guestpath))
 

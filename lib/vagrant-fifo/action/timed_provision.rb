@@ -1,7 +1,7 @@
-require "vagrant-joyent/util/timer"
+require "vagrant-fifo/util/timer"
 
 module VagrantPlugins
-  module Joyent
+  module Fifo
     module Action
       # This is the same as the builtin provision except it times the
       # provisioner runs.

@@ -1,10 +1,10 @@
 require "pathname"
 
-require "vagrant-joyent/plugin"
+require "vagrant-fifo/plugin"
 
 module VagrantPlugins
-  module Joyent
-    lib_path = Pathname.new(File.expand_path("../vagrant-joyent", __FILE__))
+  module Fifo
+    lib_path = Pathname.new(File.expand_path("../vagrant-fifo", __FILE__))
     autoload :Action, lib_path.join("action")
     autoload :Errors, lib_path.join("errors")
 

@@ -1,13 +1,13 @@
 module VagrantPlugins
-  module Joyent
+  module Fifo
     module Action
-      class MessageWillNotDestroy
+      class MessageAlreadyCreated
         def initialize(app, env)
           @app = app
         end
 
         def call(env)
-          env[:ui].info(I18n.t("vagrant_joyent.will_not_destroy", name: env[:machine].name))
+          env[:ui].info(I18n.t("vagrant_fifo.already_created"))
           @app.call(env)
         end
       end

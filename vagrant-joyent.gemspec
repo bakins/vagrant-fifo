@@ -1,20 +1,20 @@
 $:.unshift File.expand_path("../lib", __FILE__)
-require "vagrant-joyent/version"
+require "vagrant-fifo/version"
 
 Gem::Specification.new do |s|
-  s.name          = "vagrant-joyent"
-  s.version       = VagrantPlugins::Joyent::VERSION
+  s.name          = "vagrant-fifo"
+  s.version       = VagrantPlugins::Fifo::VERSION
   s.platform      = Gem::Platform::RUBY
-  s.authors       = "Sean OMeara"
-  s.email         = "someara@opscode.com"
+  s.authors       = [ "Sean OMeara", "Brian Akins" ]
+  s.email         = [ "someara@opscode.com", "brian@akins.org" ]
   s.homepage      = "http://www.vagrantup.com"
-  s.summary       = "Enables Vagrant to manage machines in Joyent cloud and SDC"
-  s.description   = "Enables Vagrant to manage machines in Joyent cloud and SDC"
+  s.summary       = "Enables Vagrant to manage machines in Fifo cloud and SDC"
+  s.description   = "Enables Vagrant to manage machines in Fifo cloud and SDC"
 
   s.required_rubygems_version = ">= 1.3.6"
-  s.rubyforge_project         = "vagrant-joyent"
+  s.rubyforge_project         = "vagrant-fifo"
 
-  s.add_runtime_dependency "fog", "~> 1.10.0"
+  s.add_runtime_dependency "project-fifo-ruby"
 
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec-core", "~> 2.12.2"
