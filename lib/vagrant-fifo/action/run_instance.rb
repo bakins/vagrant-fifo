@@ -72,6 +72,7 @@ module VagrantPlugins
                 # out
                 break if env[:interrupted]
                 break if env[:machine].communicate.ready?
+                puts "sleeping"
                 sleep 2
               end
             end
@@ -89,7 +90,6 @@ module VagrantPlugins
         end
 
         def recover(env)
-          pp env
           return if env["vagrant.error"].is_a?(Vagrant::Errors::VagrantError)
 
           if env[:machine].provider.state.id != :not_created
