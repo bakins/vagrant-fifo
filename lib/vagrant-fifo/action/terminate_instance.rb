@@ -26,10 +26,7 @@ module VagrantPlugins
 
           # Wait for server to be completely gone from invetory
           while true do
-            puts env[:machine].id
             ids = env[:fifo_compute].vms.list
-
-            pp ids
 
             unless ids.include?(env[:machine].id) then
               break
