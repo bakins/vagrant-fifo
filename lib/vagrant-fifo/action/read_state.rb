@@ -21,8 +21,8 @@ module VagrantPlugins
           return :not_created if machine.id.nil?
 
           # Find the machine
-          server = fifo.servers.get(machine.id)
-          if server.nil? || [:"shutting-down", :terminated].include?(server.state.to_sym)
+          server = fifo.vms.get(machine.id)
+          if server.nil? || [:"shutting-down", :terminated].include?(server['state'].to_sym)
             # The machine can't be found
             @logger.info("Machine not found or terminated, assuming it got destroyed.")
             machine.id = nil
@@ -30,7 +30,7 @@ module VagrantPlugins
           end
 
           # Return the state
-          return server.state.to_sym
+          return server['state'].to_sym
         end
       end
     end

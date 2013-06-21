@@ -1,10 +1,12 @@
 # vagrant-fifo Vagrant plugin
 
-vagrant-fifo is a Vagrant provider for the Fifo Cloud and SmartDatacenter
+vagrant-fifo is a Vagrant provider for Project-Fifo
+
+Note: this is under development and is probably broken. Patches welcome.
 
 ## Installation
 
-    $ git clone https://github.com/someara/vagrant-fifo/
+    $ https://github.com/bakins/vagrant-fifo.git
     $ cd vagrant-fifo
     $ gem build vagrant-fifo.gemspec ; 
     $ vagrant plugin install vagrant-fifo-0.2.1.gem 
@@ -14,8 +16,6 @@ vagrant-fifo is a Vagrant provider for the Fifo Cloud and SmartDatacenter
 
 Check out a chef-repo with a Fifo compatible Vagrantfile, then run "vagrant up"
 
-    $ git clone https://github.com/someara/vagrant-fifo-hello_world-repo 
-    $ cd vagrant-fifo-hello_world-repo
     $ vagrant up --provider=fifo
     $ vagrant provision
     $ vagrant ssh
@@ -28,3 +28,10 @@ Check out a chef-repo with a Fifo compatible Vagrantfile, then run "vagrant up"
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Thanks
+
+Based on [vagrant-joyent](https://github.com/someara/vagrant-joyent)
+
+## License
+Apache 2

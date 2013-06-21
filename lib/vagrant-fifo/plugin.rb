@@ -16,7 +16,7 @@ module VagrantPlugins
       name "Fifo"
       description <<-DESC
       This plugin installs a provider that allows Vagrant to manage
-      machines in Fifo (Public Cloud/ SmartDatacenter).
+      machines in Project-Fifo.
       DESC
 
       config(:fifo, :provider) do

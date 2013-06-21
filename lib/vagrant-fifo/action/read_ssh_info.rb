@@ -39,7 +39,7 @@ module VagrantPlugins
           return nil if machine.id.nil?
 
           # Find the machine
-          server = fifo.servers.get(machine.id)
+          server = fifo.vms.get(machine.id)
           if server.nil?
             # The machine can't be found
             @logger.info("Machine couldn't be found, assuming it got destroyed.")
@@ -48,22 +48,19 @@ module VagrantPlugins
           end
           
           # IP address to bootstrap
-          bootstrap_ip_addresses = server.ips.select{ |ip| ip and not(is_loopback(ip) or is_linklocal(ip)) }
-          if bootstrap_ip_addresses.count == 1
-            bootstrap_ip_address = bootstrap_ip_addresses.first
-          else
-            bootstrap_ip_address = bootstrap_ip_addresses.find{|ip| not is_private(ip)}            
-          end
-                    
+          bootstrap_ip_address = server['config']['networks'].first['ip']
+
           config = machine.provider_config
+
           
           # Read the DNS info
-          return {
+          info =  {
             :host => bootstrap_ip_address,
             :port => 22,
-            :private_key_path => config.ssh_private_key_path,
             :username => config.ssh_username
           }
+          pp info
+          info
         end
       end
     end

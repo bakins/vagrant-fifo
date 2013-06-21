@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description   = "Enables Vagrant to manage machines in Fifo cloud and SDC"
 
   s.required_rubygems_version = ">= 1.3.6"
-  s.rubyforge_project         = "vagrant-fifo"
+  s.rubyforge_project         = "vagrant-fifo", ">= 0.3.2"
 
   s.add_runtime_dependency "project-fifo-ruby"
 

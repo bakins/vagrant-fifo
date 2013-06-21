@@ -11,7 +11,7 @@ module VagrantPlugins
         end
 
         def call(env)
-          server = env[:fifo_compute].servers.get(env[:machine].id)
+          server = env[:fifo_compute].vms.get(env[:machine].id)
 
           # Destroy the server and remove the tracking ID
           env[:ui].info(I18n.t("vagrant_fifo.terminating"))
@@ -22,19 +22,19 @@ module VagrantPlugins
           #
           #   https://us-west-1.api.fifocloud.com/docs#DeleteMachine
           #
-          server.stop
-          server.destroy
+          env[:fifo_compute].vms.delete(server['uuid'])
 
           # Wait for server to be completely gone from invetory
           while true do
-            ids = []
-            env[:fifo_compute].servers.collect.each { |s|
-              ids << s.id
-            }
+            puts env[:machine].id
+            ids = env[:fifo_compute].vms.list
+
+            pp ids
 
             unless ids.include?(env[:machine].id) then
               break
             end
+            sleep 5
           end
 
           env[:machine].id = nil

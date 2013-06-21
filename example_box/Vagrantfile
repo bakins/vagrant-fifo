@@ -3,6 +3,6 @@
 
 Vagrant.configure("2") do |config|
   config.vm.provider :fifo do |fifo|
-    fifo.dataset = "bad2face-8738-11e2-ac72-0378d02f84de"
+    fifo.dataset = "ubuntu-12.04"
   end
 end
