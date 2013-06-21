@@ -18,24 +18,8 @@ module VagrantPlugins
           @app.call(env)
         end
 
-        def is_linklocal(ip)
-          linklocal = IPAddr.new "169.254.0.0/16"
-          return linklocal.include?(ip)
-        end
-        
-        def is_loopback(ip)
-          loopback = IPAddr.new "127.0.0.0/8"
-          return loopback.include?(ip)
-        end
-
-        def is_private(ip)
-          block_a = IPAddr.new "10.0.0.0/8"
-          block_b = IPAddr.new "172.16.0.0/12"
-          block_c = IPAddr.new "192.168.0.0/16"
-          return (block_a.include?(ip) or block_b.include?(ip) or block_c.include?(ip))
-        end
-        
         def read_ssh_info(fifo, machine)
+          puts "read_ssh_info"
           return nil if machine.id.nil?
 
           # Find the machine
@@ -57,7 +41,8 @@ module VagrantPlugins
           info =  {
             :host => bootstrap_ip_address,
             :port => 22,
-            :username => config.ssh_username
+            :username => config.ssh_username,
+            :private_key_path => config.ssh_private_key_path
           }
           pp info
           info

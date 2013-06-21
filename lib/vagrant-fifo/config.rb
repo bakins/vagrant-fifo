@@ -12,6 +12,7 @@ module VagrantPlugins
       attr_accessor :iprange
       attr_accessor :node_name
       attr_accessor :ssh_username
+      attr_accessor :ssh_private_key_path
 
       def initialize(datacenter_specific=false)
         @username    = UNSET_VALUE
@@ -22,6 +23,7 @@ module VagrantPlugins
         @iprange            = UNSET_VALUE
         @node_name          = UNSET_VALUE
         @ssh_username       = UNSET_VALUE
+        @ssh_private_key_path = UNSET_VALUE
       end
 
       #-------------------------------------------------------------------
@@ -40,7 +42,7 @@ module VagrantPlugins
         @iprange = "default" if @iprange == UNSET_VALUE
         @node_name = nil if @node_name == UNSET_VALUE
         @ssh_username = "root" if @ssh_username == UNSET_VALUE
-
+        @ssh_private_key_path = nil if @ssh_private_key_path == UNSET_VALUE
       end
 
       def validate(machine)
