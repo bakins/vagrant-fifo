@@ -19,7 +19,6 @@ module VagrantPlugins
         end
 
         def read_ssh_info(fifo, machine)
-          puts "read_ssh_info"
           return nil if machine.id.nil?
 
           # Find the machine
