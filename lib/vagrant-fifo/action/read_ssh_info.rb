@@ -38,14 +38,12 @@ module VagrantPlugins
 
           
           # Read the DNS info
-          info =  {
+          return {
             :host => bootstrap_ip_address,
             :port => 22,
             :username => config.ssh_username,
             :private_key_path => config.ssh_private_key_path
           }
-          pp info
-          info
         end
       end
     end
