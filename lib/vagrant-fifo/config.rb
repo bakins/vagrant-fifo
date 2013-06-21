@@ -56,6 +56,7 @@ module VagrantPlugins
         errors << I18n.t("vagrant_fifo.config.package_required") if config.package.nil?
         errors << I18n.t("vagrant_fifo.config.iprange_required") if config.iprange.nil?
         errors << I18n.t("vagrant_fifo.config.ssh_username_required") if config.ssh_username.nil?
+        errors << I18n.t("vagrant_fifo.config.ssh_private_key_path_required") if config.ssh_private_key_path.nil?
         { "Fifo Provider" => errors }
       end
     end
