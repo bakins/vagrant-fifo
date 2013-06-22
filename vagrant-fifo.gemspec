@@ -14,6 +14,6 @@ Gem::Specification.new do |s|
   s.add_dependency "project-fifo-ruby"
 
   s.files         = `git ls-files`.split($/)
-  s.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.require_path  = 'lib'
 end
