@@ -1,6 +1,6 @@
 # vagrant-fifo Vagrant plugin
 
-vagrant-fifo is a Vagrant provider for Project-Fifo
+vagrant-fifo is a Vagrant provider for [Project-Fifo](http://project-fifo.net/)
 
 Note: this is under development and is probably broken. Patches welcome.
 
@@ -27,7 +27,7 @@ Check out a chef-repo with a Fifo compatible Vagrantfile, then run "vagrant up"
     vagrant up --provider=fifo
     vagrant provision
     vagrant ssh
-    agrant destroy
+    vagrant destroy
 
 Example Vagrantfile:
 
@@ -44,6 +44,17 @@ Example Vagrantfile:
         fifo.ssh_private_key_path = "/path/to/my/private/key"
       end
     end
+
+You can also use a box url, rather than building the example box on
+your local machine:
+
+    Vagrant.configure("2") do |config|
+       config.vm.box = "fifo"
+       config.vm.box_url = "http://www.akins.org/vagrant/fifo.box"
+       ...
+    end
+
+Feel free to mirror your own copy of `fifo.box`
 
 #### Configuration
 
