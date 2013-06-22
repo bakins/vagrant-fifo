@@ -72,7 +72,6 @@ module VagrantPlugins
                 # out
                 break if env[:interrupted]
                 break if env[:machine].communicate.ready?
-                puts "sleeping"
                 sleep 2
               end
             end
